@@ -1,59 +1,32 @@
-window.onload = function() {
-  // array with the words
-  let first = "El ";
-  let adj = [
-    "pequeño ",
-    "joven ",
-    "jugueton ",
-    "solitario ",
-    "loquillo ",
-    "mordelon ",
-    "malcriado ",
-    "rompedor ",
-    "papel ",
-    "tarea "
-  ];
-  let noun = ["perro "];
-  let action = [
-    "agarro mi ",
-    "mordio mi ",
-    "comio mi ",
-    "jugo con mi ",
-    "me robo mi ",
-    "escondio mi ",
-    "meo mi "
-  ];
-  let possetion = [
-    "casa ",
-    "cama ",
-    "mesa ",
-    "escritorio ",
-    "laptop ",
-    "mueble "
-  ];
-  let where = [
-    "en mi cama",
-    "en mi escritorio",
-    "en el piso de casa",
-    "sobre la mesa del living",
-    "dentro de un cajon",
-    "detras de una puerta",
-    "debajo de mi cama"
-  ];
+window.onload = () => {
+  const palabras = {
+    articulo: ["El"],
+    adjetivo: ["pequeño", "joven", "jugueton", "solitario"],
+    sustantivo: ["perro"],
+    verbo: ["agarro", "mordio", "comio"],
+    objeto: ["casa", "cama", "mesa"],
+    lugar: ["en mi cama", "en mi escritorio"]
+  };
 
-  // declaring random variables
-  let rdm1 = Math.floor(Math.random() * adj.length);
-  let rdm2 = Math.floor(Math.random() * noun.length);
-  let rdm3 = Math.floor(Math.random() * action.length);
-  let rdm4 = Math.floor(Math.random() * possetion.length);
-  let rdm5 = Math.floor(Math.random() * where.length);
+  const colores = ["rojo", "azul", "verde"];
 
-  // creating a sentence (the excuse)
-  document.querySelector("#excuse").innerHTML =
-    first +
-    adj[rdm1] +
-    noun[rdm2] +
-    action[rdm3] +
-    possetion[rdm4] +
-    where[rdm5];
+  const generarFrase = () => {
+    const frase = Object.values(palabras)
+      .map(arr => arr[Math.floor(Math.random() * arr.length)])
+      .join(" ");
+
+    const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
+
+    const elementoFrase = document.getElementById("excuse");
+    elementoFrase.style.fontSize = "24px";
+    elementoFrase.textContent = frase;
+    elementoFrase.style.color = colorAleatorio;
+  };
+
+  generarFrase();
+
+  const boton = document.createElement("button");
+  boton.textContent = "Generar nueva frase";
+  boton.addEventListener("click", generarFrase);
+  document.body.appendChild(boton);
 };
