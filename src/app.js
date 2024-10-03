@@ -8,19 +8,24 @@ window.onload = () => {
     lugar: ["en mi cama", "en mi escritorio"]
   };
 
-  const colores = ["rojo", "azul", "verde"];
-
   const generarFrase = () => {
     const frase = Object.values(palabras)
       .map(arr => arr[Math.floor(Math.random() * arr.length)])
       .join(" ");
 
-    const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
-
     const elementoFrase = document.getElementById("excuse");
     elementoFrase.style.fontSize = "24px";
     elementoFrase.textContent = frase;
-    elementoFrase.style.color = colorAleatorio;
+    const level = document.getElementById("dificultad").value;
+    console.log(level);
+
+    if (level === "facil") {
+      elementoFrase.style.color = "green";
+    } else if (level === "medio") {
+      elementoFrase.style.color = "blue";
+    } else {
+      elementoFrase.style.color = "red";
+    }
   };
 
   generarFrase();
