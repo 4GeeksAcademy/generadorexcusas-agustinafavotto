@@ -17,13 +17,13 @@ window.onload = () => {
     elementoFrase.style.fontSize = "24px";
     elementoFrase.textContent = frase;
     const level = document.getElementById("dificultad").value;
-    console.log(level);
+    const verbo = frase.split(" ")[3];
 
-    if (level === "facil") {
+    if (level === "facil" && verbo === "agarro") {
       elementoFrase.style.color = "green";
-    } else if (level === "medio") {
+    } else if (level === "medio" && verbo === "mordio") {
       elementoFrase.style.color = "blue";
-    } else {
+    } else if (level === "dificil" && verbo === "comio") {
       elementoFrase.style.color = "red";
     }
   };
