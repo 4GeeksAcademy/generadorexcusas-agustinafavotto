@@ -8,27 +8,35 @@ window.onload = () => {
     lugar: ["en mi cama", "en mi escritorio"]
   };
 
+  const level = {
+    facil: ["agarro"],
+    medio: ["mordio"],
+    dificil: ["comio"]
+  };
+
+  const colores = {
+    facil: "green",
+    medio: "blue",
+    dificil: "red"
+  };
+
   const generarFrase = () => {
     const frase = Object.values(palabras)
       .map(arr => arr[Math.floor(Math.random() * arr.length)])
       .join(" ");
 
     const elementoFrase = document.getElementById("excuse");
-    elementoFrase.style.fontSize = "24px";
     elementoFrase.textContent = frase;
     const level = document.getElementById("dificultad").value;
-    const verbo = frase.split(" ")[3];
 
-    if (level === "facil" && verbo === "agarro") {
-      elementoFrase.style.color = "green";
-    } else if (level === "medio" && verbo === "mordio") {
-      elementoFrase.style.color = "blue";
-    } else if (level === "dificil" && verbo === "comio") {
-      elementoFrase.style.color = "red";
+    if (level === "facil") {
+      elementoFrase.style.color = colores.facil;
+    } else if (level === "medio") {
+      elementoFrase.style.color = colores.medio;
+    } else if (level === "dificil") {
+      elementoFrase.style.color = colores.dificil;
     }
   };
-
-  generarFrase();
 
   const boton = document.createElement("button");
   boton.textContent = "Generar nueva frase";
