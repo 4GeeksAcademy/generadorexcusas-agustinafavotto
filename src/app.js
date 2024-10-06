@@ -15,9 +15,9 @@ window.onload = () => {
   };
 
   const colores = {
-    facil: "green",
-    medio: "blue",
-    dificil: "red"
+    facil: ["green"],
+    medio: ["blue"],
+    dificil: ["red"]
   };
 
   const generarFrase = () => {
@@ -27,14 +27,15 @@ window.onload = () => {
 
     const elementoFrase = document.getElementById("excuse");
     elementoFrase.textContent = frase;
+    elementoFrase.style.color = "colores";
     const level = document.getElementById("dificultad").value;
 
-    if (level === "facil") {
-      elementoFrase.style.color = colores.facil;
+    if (level == "facil") {
+      elementoFrase.style.color = colores["facil"];
     } else if (level === "medio") {
-      elementoFrase.style.color = colores.medio;
+      elementoFrase.style.color = colores["medio"];
     } else if (level === "dificil") {
-      elementoFrase.style.color = colores.dificil;
+      elementoFrase.style.color = colores["dificil"];
     }
   };
 
