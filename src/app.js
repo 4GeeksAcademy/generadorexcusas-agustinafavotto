@@ -1,42 +1,40 @@
 window.onload = () => {
   const palabras = {
-    articulo: ["El"],
-    adjetivo: ["pequeño", "joven", "jugueton", "solitario"],
-    sustantivo: ["perro"],
+    articulo: ["El", "La", "Los", "Las"],
+    adjetivo: ["pequeño", "joven", "juguetón", "solitario", "feliz", "triste"],
+    sustantivo: ["perro", "gato", "niño", "niña", "casa", "coche"],
     verbo: ["agarro", "mordio", "comio"],
-    objeto: ["casa", "cama", "mesa"],
-    lugar: ["en mi cama", "en mi escritorio"]
+    adverbio: ["rápidamente", "lentamente", "felizmente", "tristemente"],
+    preposicion: ["en", "sobre", "bajo", "detrás"]
   };
 
-  const level = {
-    facil: ["agarro"],
-    medio: ["mordio"],
-    dificil: ["comio"]
-  };
-
-  const colores = {
-    facil: ["green"],
-    medio: ["blue"],
-    dificil: ["red"]
+  const coloresVerbos = {
+    agarro: "green",
+    mordio: "blue",
+    comio: "red"
   };
 
   const generarFrase = () => {
-    const frase = Object.values(palabras)
-      .map(arr => arr[Math.floor(Math.random() * arr.length)])
-      .join(" ");
+    const nivelSeleccionado = document.getElementById("dificultad").value;
+    const frase = [
+      palabras.articulo[Math.floor(Math.random() * palabras.articulo.length)],
+      palabras.adjetivo[Math.floor(Math.random() * palabras.adjetivo.length)],
+      palabras.sustantivo[Math.random() * palabras.sustantivo.length],
+      palabras.verbo[Math.floor(Math.random() * palabras.verbo.length)],
+      palabras.adverbio[Math.floor(Math.random() * palabras.adverbio.length)],
+      palabras.preposicion[
+        Math.floor(Math.random() * palabras.preposicion.length)
+      ]
+    ].join(" ");
 
-    const elementoFrase = document.getElementById("excuse");
+    const elementoFrase = document.getElementById("frase");
     elementoFrase.textContent = frase;
-    elementoFrase.style.color = "colores";
-    const level = document.getElementById("dificultad").value;
 
-    if (level == "facil") {
-      elementoFrase.style.color = colores["facil"];
-    } else if (level === "medio") {
-      elementoFrase.style.color = colores["medio"];
-    } else if (level === "dificil") {
-      elementoFrase.style.color = colores["dificil"];
-    }
+    const verbo = frase
+      .split(" ")
+      .find(palabra => palabras.verbo.includes(palabra));
+
+    elementoFrase.style.color = coloresVerbos[verbo] || "black";
   };
 
   const boton = document.createElement("button");
